@@ -57,22 +57,30 @@ const Home = () => {
     const fetchTopMovies = async () => {
       setLoading(true)
       try {
-        const res = await fetch(
-          `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=movie&type=movie&y=2022`,
-        )
-        const data = await res.json()
-
-        if (data.Response === "True") {
-          const detailedMovies = await Promise.all(
-            data.Search.map(async (movie: any) => {
-              const detailRes = await fetch(
-                `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie.imdbID}`,
-              )
-              return detailRes.json()
-            }),
+        // Fetch movies from multiple pages
+        const allMovies = []
+        for (let page = 1; page <= 3; page++) {
+          // Fetch 3 pages (30 movies total)
+          const res = await fetch(
+            `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=movie&type=movie&y=2022&page=${page}`,
           )
-          setTopMovies(detailedMovies)
+          const data = await res.json()
+
+          if (data.Response === "True") {
+            allMovies.push(...data.Search)
+          }
         }
+
+        // Get detailed info for all movies
+        const detailedMovies = await Promise.all(
+          allMovies.map(async (movie: any) => {
+            const detailRes = await fetch(
+              `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie.imdbID}`,
+            )
+            return detailRes.json()
+          }),
+        )
+        setTopMovies(detailedMovies)
       } catch (error) {
         console.error("Error fetching movies:", error)
       } finally {
