@@ -1,0 +1,98 @@
+.home-bg {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #141e30 0%, #243b55 100%);
+    padding: 32px 8px;
+}
+
+.home-card {
+    max-width: 480px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 32px rgba(20, 30, 48, 0.15);
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+}
+
+.home-title {
+    color: #141e30;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.home-desc {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+
+.home-btn {
+    font-size: 18px;
+    padding: 8px 32px;
+    border-radius: 8px;
+}
+
+.trending-section {
+    padding: 40px 0;
+    background: white;
+    border-radius: 16px;
+    margin: 32px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 32px !important;
+    color: #141e30;
+}
+
+.movie-carousel {
+    padding: 0 24px;
+}
+
+.movie-carousel .slick-dots {
+    bottom: -30px;
+}
+
+.movie-slide {
+    padding: 8px 4px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.home-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.home-hero {
+    text-align: center;
+    padding: 48px 24px;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    color: white;
+}
+
+.cta-buttons {
+    margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+    .movie-carousel {
+        padding: 0 12px;
+    }
+
+    .movie-slide .ant-col {
+        margin-bottom: 16px;
+    }
+}

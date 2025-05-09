@@ -1,12 +1,7 @@
-import "./App.css"
-import AuthForm from "./features/auth/authForm"
+import AppRoutes from "./Routes"
 
 function App() {
-  return (
-    <div className="App">
-      <AuthForm />
-    </div>
-  )
+  return <AppRoutes />
 }
 
 export default App
