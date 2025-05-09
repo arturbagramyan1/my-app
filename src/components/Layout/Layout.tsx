@@ -1,10 +1,11 @@
-import { Layout as AntLayout, Menu, Button, theme } from "antd"
+import { Layout as AntLayout, Menu, Button, Space, theme } from "antd"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import {
   HomeOutlined,
   VideoCameraOutlined,
   HeartOutlined,
   LogoutOutlined,
+  UserOutlined,
 } from "@ant-design/icons"
 import { useAppSelector, useAppDispatch } from "../../app/hooks"
 import { logout } from "../../features/auth/authSlice"
@@ -20,6 +21,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const { token } = theme.useToken()
+  const userEmail = auth.currentUser?.email?.replace("@movieapp.local", "")
 
   const handleLogout = async () => {
     try {
@@ -84,14 +86,27 @@ const Layout = ({ children }: { children: ReactNode }) => {
           />
         </div>
         {isLoggedIn && (
-          <Button
-            type="text"
-            icon={<LogoutOutlined />}
-            onClick={handleLogout}
-            style={{ marginLeft: 16 }}
-          >
-            Logout
-          </Button>
+          <Space>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: token.colorTextSecondary,
+              }}
+            >
+              <UserOutlined />
+              {userEmail}
+            </span>
+            <Button
+              type="text"
+              icon={<LogoutOutlined />}
+              onClick={handleLogout}
+              style={{ marginLeft: 16 }}
+            >
+              Logout
+            </Button>
+          </Space>
         )}
       </Header>
 
